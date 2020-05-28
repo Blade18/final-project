@@ -1,0 +1,31 @@
+using UnityEngine;
+using System.Collections;
+
+public class Killfeed : MonoBehaviour {
+
+	[SerializeField]
+	GameObject killfeedItemPrefab;
+
+	// Use this for initialization
+	void Start () {
+		GameManager.instance.onPlayerKilledCallback += OnKill;
+		GameManager.instance.onPlayerJoinCallback += OnJoin;
+	}
+
+	public void OnKill (string player, string source)
+	{
+		GameObject go = (GameObject)Instantiate(killfeedItemPrefab, this.transform);
+		go.GetComponent<KillfeedItem>().Setup(player, source);
+
+		Destroy(go, 4f);
+	}
+
+	public void OnJoin(string player)
+	{
+		GameObject go = (GameObject)Instantiate(killfeedItemPrefab, this.transform);
+		go.GetComponent<KillfeedItem>().Respown(player);
+
+		Destroy(go, 4f);
+	}
+
+}
