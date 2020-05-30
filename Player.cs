@@ -169,7 +169,7 @@ public class Player : NetworkBehaviour
         respown = true;
         SetupPlayer();
 
-        Debug.Log(transform.name + " respoenrd");
+        Debug.Log(transform.name + " respawned");
         
     }
 
@@ -186,10 +186,8 @@ public class Player : NetworkBehaviour
 
     public void killcount(string killer_Name)
     {
-        Debug.Log("firsy");
         if (isLocalPlayer)
         { 
-            Debug.Log("firsy2");
             GameManager.PlusKill();
             Cmdkillcount(killer_Name);
         }
@@ -234,12 +232,10 @@ public class Player : NetworkBehaviour
         //Create spawn effect
         GameObject _gfxIns = (GameObject)Instantiate(spawnEffect, transform.position, Quaternion.identity);
         Destroy(_gfxIns, 3f);
-        Debug.Log("the before " + respown);
         if (isLocalPlayer)
         {
             if (!respown)
                 return;
-            Debug.Log("101 " + GameManager.playerName);
             respown = false;
             CmdRes(GameManager.playerName);
         }

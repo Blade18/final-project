@@ -33,7 +33,7 @@ public class LogIn : MonoBehaviour
         {
             if (string.Equals(response.userName, playerName) && string.Equals(response.password, Password))
             {
-                Debug.Log("work");
+                Debug.Log("log in work");
                 status.text = "";
                 GameManager.GetUser(response);
                 SceneManager.LoadScene(2);

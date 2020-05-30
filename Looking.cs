@@ -18,6 +18,7 @@ public class Looking : MonoBehaviour
         {
             if (Cursor.lockState != CursorLockMode.None)
                 Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
 
             return;
         }
@@ -25,6 +26,7 @@ public class Looking : MonoBehaviour
         if (Cursor.lockState != CursorLockMode.Locked)
         {
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;

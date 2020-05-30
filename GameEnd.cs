@@ -44,7 +44,6 @@ public class GameEnd : NetworkBehaviour
 
         foreach (Player player in players)
         {
-            Debug.Log("in +++" + isEnd + " ko " + playername);
             canvas.SetActive(true);
             CmdUI(playername);
             StartCoroutine(wait());
@@ -53,7 +52,6 @@ public class GameEnd : NetworkBehaviour
     private IEnumerator wait()
     {
         yield return new WaitForSeconds(4);
-        Debug.Log("gg");
         CmdEND();
     }
 

@@ -1,7 +1,6 @@
 ﻿using Proyecto26;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Register : MonoBehaviour
@@ -42,6 +41,11 @@ public class Register : MonoBehaviour
         if (password.Length <= 7)
         {
             status.text = "Use 8 characters or more for your password";
+            return;
+        }
+        if (playerName.Length > 8)
+        {
+            status.text = "User name is to long";
             return;
         }
 

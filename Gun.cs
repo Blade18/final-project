@@ -2,6 +2,7 @@
 using UnityEngine.Networking;
 
 [RequireComponent(typeof(WeaponManager))]
+[RequireComponent(typeof(AudioSource))]
 public class Gun : NetworkBehaviour
 {
 
@@ -116,7 +117,8 @@ public class Gun : NetworkBehaviour
 
         //We are shooting, call the OnShoot method on the server
         CmdOnShoot();
-        shotsound.Play();
+        Cmdshotsound();
+        //shotsound.Play();
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, currentWeapon.range, mask))
         {
@@ -149,4 +151,18 @@ public class Gun : NetworkBehaviour
         _player.RpcTakeDamage(damage, killer_Name);
     }
 
+    //Is called on the server when we hit something
+    //Takes in the hit point and the normal of the surface
+    [Command]
+    void Cmdshotsound()
+    {
+        Rpcshotsound();
+    }
+
+    //Is called on all clients
+    [ClientRpc]
+    void Rpcshotsound()
+    {
+        shotsound.Play();
+    }
 }
