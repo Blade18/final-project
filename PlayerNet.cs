@@ -104,6 +104,7 @@ public class PlayerNet : NetworkBehaviour
     void OnDisable()
     {
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         Destroy(playerUIInstance);
 
         if (isLocalPlayer)
